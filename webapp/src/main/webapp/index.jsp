@@ -14,7 +14,10 @@
         
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br><br>
-      
+       
+        <label for="Phone">Phone:</label><br>
+        <input type="Phone" id="Phone" name="Phone Number" required><br><br>
+            
            
         <input type="submit" value="Submit">
     </form>
