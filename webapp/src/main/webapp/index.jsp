@@ -4,110 +4,124 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Portfolio</title>
+    <title>Simple Quiz App</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        header h1 {
             margin: 0;
-        }
-        nav {
-            margin: 1rem;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            padding: 20px;
         }
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .profile-pic {
-            width: 150px;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-        }
-        .about {
+        h1 {
             text-align: center;
         }
-        .skills ul {
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .options {
             list-style: none;
             padding: 0;
         }
-        .skills li {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            margin: 5px 0;
-            text-align: center;
+        .options li {
+            margin-bottom: 10px;
         }
-        footer {
+        .options label {
+            cursor: pointer;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
             background-color: #333;
             color: white;
-            padding: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        .result {
             text-align: center;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: none;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>My Portfolio</h1>
-    </header>
-
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <!-- About Me Section -->
-    <section id="about" class="container">
-        <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-        <h2 class="about">About Me</h2>
-        <p>Hello! I am [Your Name], a web development enthusiast. I enjoy learning new technologies and creating web applications. This is my simple portfolio to showcase my skills and projects.</p>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="container">
-        <h2>Skills</h2>
-        <ul class="skills">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Python</li>
+    <div class="container">
+        <h1>Simple Quiz</h1>
+        <div class="question">What is the capital of France?</div>
+        <ul class="options">
+            <li>
+                <label>
+                    <input type="radio" name="option" value="Berlin">
+                    Berlin
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" name="option" value="Madrid">
+                    Madrid
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" name="option" value="Paris">
+                    Paris
+                </label>
+            </li>
+            <li>
+                <label>
+                    <input type="radio" name="option" value="Rome">
+                    Rome
+                </label>
+            </li>
         </ul>
-    </section>
+        <button id="submit-btn">Submit Answer</button>
+        <div class="result" id="result"></div>
+    </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>You can reach me at: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    </section>
+    <script>
+        const submitBtn = document.getElementById('submit-btn');
+        const resultDiv = document.getElementById('result');
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 My Portfolio | All rights reserved</p>
-    </footer>
+        submitBtn.addEventListener('click', function() {
+            const selectedOption = document.querySelector('input[name="option"]:checked');
+            if (!selectedOption) {
+                alert('Please select an answer!');
+                return;
+            }
+
+            const answer = selectedOption.value;
+            resultDiv.style.display = 'block';
+
+            if (answer === 'Paris') {
+                resultDiv.textContent = 'Correct! Paris is the capital of France.';
+                resultDiv.classList.add('correct');
+                resultDiv.classList.remove('incorrect');
+            } else {
+                resultDiv.textContent = 'Incorrect! The correct answer is Paris.';
+                resultDiv.classList.add('incorrect');
+                resultDiv.classList.remove('correct');
+            }
+        });
+    </script>
 
 </body>
 </html>
